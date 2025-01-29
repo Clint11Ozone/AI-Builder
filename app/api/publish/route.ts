@@ -10,7 +10,7 @@ export async function POST(request: any) {
   const templateID = uuidv4(); // Generate a unique ID
   const filePath = path.join(process.cwd(), "templates", `${templateID}.json`); // Path to save the file
 
-  const baseUrl = 'localhost30000'
+  const baseUrl = 'localhost:30000'
   // Save the context with the generated templateID
   await writeFile(filePath, JSON.stringify({ templateID, ...context }, null, 2));
 
