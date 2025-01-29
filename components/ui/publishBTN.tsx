@@ -114,6 +114,7 @@ const DynamicButton: React.FC<DynamicButtonProps> = ({
         setIsPublishModalOpen(true);
       };
 
+      
       console.log(aiName)
     return (
         <button 
