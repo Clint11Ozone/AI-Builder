@@ -6,13 +6,10 @@ import { EditorProvider } from "../context/EditorContext";
 
 const inter = Inter({ subsets: ["latin"] })
 
-<<<<<<< HEAD
 // export const metadata = {
 //   title: "Minimal Prompt UI Editor",
 //   description: "Create and customize your AI chat interface",
 // }
-=======
->>>>>>> fa74179 (initial)
 
 export default function RootLayout({
   children,
