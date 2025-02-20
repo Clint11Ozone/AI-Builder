@@ -54,8 +54,55 @@ export default function Preview() {
     }
   }, [messages]);
 
+  // const handleSendMessage = async () => {
+  //   // if (!input.trim()) return;
+
+  //   const userMessage = {
+  //     id: crypto.randomUUID(),
+  //     role: "user",
+  //     content: input,
+  //   };
+
+  //   setMessages((prev) => [...prev, userMessage]);
+  //   setInput("ello Lisa");
+  //   setIsLoading(true);
+  //   setInput("")
+
+  //   try {
+  //     const response = await fetch(
+  //       "https://n8n.abslm.nl/webhook/55b3c6ef-2ba5-4f83-9217-9d5f5c1ed4c8",
+  //       {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({ query: input, sessionId: "none" }),
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error("Failed to communicate with the chatbot.");
+  //     }
+
+  //     const data = await response.json();
+
+  //     const assistantMessage = {
+  //       id: crypto.randomUUID(),
+  //       role: "system",
+  //       content: data.output || "No response available.",
+  //     };
+  //     console.log(data.output)
+  //     setMessages((prev) => [...prev, assistantMessage]);
+  //   } catch (error) {
+  //     setMessages((prev) => [
+  //       ...prev,
+  //       { id: crypto.randomUUID(), role: "system", content: "An error occurred. Please try again." },
+  //     ]);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
   const handleSendMessage = async () => {
-    // if (!input.trim()) return;
+    if (!input.trim()) return;
 
     const userMessage = {
       id: crypto.randomUUID(),
@@ -64,41 +111,28 @@ export default function Preview() {
     };
 
     setMessages((prev) => [...prev, userMessage]);
-    setInput("ello Lisa");
-    setIsLoading(true);
-    setInput("")
+    setInput("");
 
-    try {
-      const response = await fetch(
-        "https://n8n.abslm.nl/webhook/55b3c6ef-2ba5-4f83-9217-9d5f5c1ed4c8",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ query: input, sessionId: "none" }),
-        }
-      );
+    // Simulate a brief delay for a more natural feel
+    setTimeout(() => {
+      const staticResponses = [
+        "Hello! How can I help you today?",
+        "That's an interesting point you bring up.",
+        "I understand what you're saying. Let me help you with that.",
+        "Thanks for sharing. Here's what I think about that.",
+        "I appreciate your question. Here's my response.",
+      ];
 
-      if (!response.ok) {
-        throw new Error("Failed to communicate with the chatbot.");
-      }
-
-      const data = await response.json();
+      const randomResponse = staticResponses[Math.floor(Math.random() * staticResponses.length)];
 
       const assistantMessage = {
         id: crypto.randomUUID(),
         role: "system",
-        content: data.output || "No response available.",
+        content: randomResponse,
       };
-      console.log(data.output)
+      
       setMessages((prev) => [...prev, assistantMessage]);
-    } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        { id: crypto.randomUUID(), role: "system", content: "An error occurred. Please try again." },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
+    }, 1000);
   };
 
 
